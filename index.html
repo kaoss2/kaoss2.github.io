@@ -97,11 +97,23 @@
             font-weight: bold;
             margin-top: 15px;
             border-radius: 3px;
+            transition: 0.3s;
         }
 
         .btn:hover {
             background: #fff;
             color: #ff0000;
+            box-shadow: 0 0 15px #ff0000;
+        }
+
+        .btn-discord {
+            background: #5865F2; /* Discord Rengi */
+        }
+
+        .btn-discord:hover {
+            background: #fff;
+            color: #5865F2;
+            box-shadow: 0 0 15px #5865F2;
         }
 
         /* Footer */
@@ -134,7 +146,7 @@
         <a href="#">Ana Sayfa</a>
         <a href="#">Manifesto</a>
         <a href="#">Araçlar</a>
-        <a href="#">İletişim</a>
+        <a href="https://discord.gg/dwShW5wKhG" target="_blank">Discord</a>
     </nav>
 
     <section class="hero">
@@ -156,12 +168,14 @@
 
         <div class="card" style="border-left-color: #fff;">
             <h2>Aktif Durum: <span style="color: #00ff00;">Online</span></h2>
-            <p>Ekibimiz şu an aktif olarak yeni projeler üzerinde çalışıyor. Katılmak veya destek olmak için iletişime geçin.</p>
+            <p>Ekibimiz şu an aktif olarak yeni projeler üzerinde çalışıyor. Operasyonlarımıza katılmak veya bilgi almak için sunucumuza katılın.</p>
+            <a href="https://discord.gg/dwShW5wKhG" target="_blank" class="btn btn-discord">Discord Sunucumuza Katıl</a>
         </div>
     </div>
 
     <footer>
         &copy; 2026 kAos+ Ekibi. Tüm hakları bilgiye aittir. <br>
+        İletişim: <a href="https://discord.gg/dwShW5wKhG" style="color:#ff0000; text-decoration:none;">Discord / kAos+</a> <br>
         "Information wants to be free."
     </footer>
 
