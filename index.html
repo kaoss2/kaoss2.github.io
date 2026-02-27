@@ -44,8 +44,9 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1000');
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1000');
             background-size: cover;
+            position: relative;
         }
 
         .hero h1 {
@@ -60,6 +61,7 @@
             font-size: 1.2rem;
             max-width: 600px;
             color: #ccc;
+            z-index: 2;
         }
 
         /* İçerik Kartları */
@@ -86,6 +88,26 @@
             color: #ff0000;
             margin-top: 0;
         }
+
+        /* Terminal Görünümü */
+        .terminal-box {
+            background: #000;
+            color: #00ff00;
+            padding: 15px;
+            font-size: 0.9rem;
+            border-radius: 0 0 5px 5px;
+            border: 1px solid #333;
+        }
+
+        .terminal-header {
+            background: #333;
+            padding: 5px 10px;
+            border-radius: 5px 5px 0 0;
+            display: flex;
+            gap: 5px;
+        }
+
+        .dot { width: 10px; height: 10px; border-radius: 50%; }
 
         /* Butonlar */
         .btn {
@@ -125,7 +147,7 @@
             border-top: 1px solid #222;
         }
 
-        /* Terminal Efekti */
+        /* Animasyonlar */
         .cursor {
             display: inline-block;
             width: 10px;
@@ -133,10 +155,25 @@
             animation: blink 1s infinite;
         }
 
+        .pulse {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background-color: #00ff00;
+            border-radius: 50%;
+            margin-right: 5px;
+            animation: pulse-animation 1.5s infinite;
+        }
+
         @keyframes blink {
             0% { opacity: 0; }
             50% { opacity: 1; }
             100% { opacity: 0; }
+        }
+
+        @keyframes pulse-animation {
+            0% { box-shadow: 0 0 0 0px rgba(0, 255, 0, 0.7); }
+            100% { box-shadow: 0 0 0 10px rgba(0, 255, 0, 0); }
         }
     </style>
 </head>
@@ -155,6 +192,22 @@
     </section>
 
     <div class="container">
+        <div style="margin-bottom: 30px;">
+            <div class="terminal-header">
+                <div class="dot" style="background: #ff5f56;"></div>
+                <div class="dot" style="background: #ffbd2e;"></div>
+                <div class="dot" style="background: #27c93f;"></div>
+                <span style="font-size: 0.7rem; color: #aaa; margin-left: 10px;">root@kAos: ~</span>
+            </div>
+            <div class="terminal-box">
+                <div>$ systemctl status kaos-plus.service</div>
+                <div style="color: #00ff00;">● kaos-plus.service - Hacktivism Initiative</div>
+                <div>Loaded: active (running) since Fri 2026-02-07</div>
+                <div>Main PID: 1337 (kAos)</div>
+                <div>$ <span id="typing-text"></span><span class="cursor">_</span></div>
+            </div>
+        </div>
+
         <div class="card">
             <h2>Yasal Hacktizm Nedir?</h2>
             <p>Bizler dijital dünyadaki adaletsizliklere ve sansüre karşı, hukuki sınırlar içerisinde kalarak veri şeffaflığı ve bilgi özgürlüğü için mücadele eden bir kolektiğiz.</p>
@@ -167,7 +220,7 @@
         </div>
 
         <div class="card" style="border-left-color: #fff;">
-            <h2>Aktif Durum: <span style="color: #00ff00;">Online</span></h2>
+            <h2>Aktif Durum: <span class="pulse"></span><span style="color: #00ff00;">Online</span></h2>
             <p>Ekibimiz şu an aktif olarak yeni projeler üzerinde çalışıyor. Operasyonlarımıza katılmak veya bilgi almak için sunucumuza katılın.</p>
             <a href="https://discord.gg/dwShW5wKhG" target="_blank" class="btn btn-discord">Discord Sunucumuza Katıl</a>
         </div>
@@ -178,6 +231,20 @@
         İletişim: <a href="https://discord.gg/dwShW5wKhG" style="color:#ff0000; text-decoration:none;">Discord / kAos+</a> <br>
         "Information wants to be free."
     </footer>
+
+    <script>
+        // Terminale otomatik yazı efekti
+        const text = "knowledge_is_power.sh --run";
+        let i = 0;
+        function typeWriter() {
+            if (i < text.length) {
+                document.getElementById("typing-text").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        }
+        window.onload = typeWriter;
+    </script>
 
 </body>
 </html>
